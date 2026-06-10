@@ -1,38 +1,23 @@
-export interface NavItem {
-  href: string;
-  label: string;
-}
-
-export interface NavGroup {
-  label: string;
-  items: NavItem[];
-}
-
-export interface NavConfig {
-  primary: NavItem[];
-  groups: NavGroup[];
-}
-
-export const NAV_CONFIG: NavConfig = {
+export const NAV_CONFIG = {
   primary: [
-    { href: "/book", label: "Book a Repair" },
-    { href: "/jobs", label: "My Jobs" },
+    { label: "Book a Repair", href: "/book" },
+    { label: "My Jobs", href: "/jobs" },
   ],
   groups: [
     {
       label: "Tradesperson",
       items: [
-        { href: "/tradesperson/jobs", label: "Jobs" },
-        { href: "/tradesperson/earnings", label: "Earnings" },
-        { href: "/tradesperson/onboard", label: "Onboard" },
+        { label: "Jobs", href: "/tradesperson/jobs" },
+        { label: "Earnings", href: "/tradesperson/earnings" },
+        { label: "Onboard", href: "/tradesperson/onboard" },
       ],
     },
     {
-      label: "Admin",
+      label: "Operations",
       items: [
-        { href: "/admin/jobs", label: "Jobs" },
-        { href: "/admin/credentials", label: "Credentials" },
+        { label: "Jobs", href: "/admin/jobs" },
+        { label: "Credentials", href: "/admin/credentials" },
       ],
     },
   ],
-};
+} as const;
