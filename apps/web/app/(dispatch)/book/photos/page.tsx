@@ -34,13 +34,13 @@ function PhotoUploadContent() {
       );
       return;
     }
-    const combined = [...photos, ...selected].slice(0, MAX_PHOTOS);
-    const previews: PhotoPreview[] = combined.map((f) => ({
+    const newPreviews: PhotoPreview[] = selected.map((f) => ({
       name: f.name,
       url: URL.createObjectURL(f),
       file: f,
     }));
-    setPhotos(previews);
+    const combined = [...photos, ...newPreviews].slice(0, MAX_PHOTOS);
+    setPhotos(combined);
     if (inputRef.current) inputRef.current.value = "";
   }
 
