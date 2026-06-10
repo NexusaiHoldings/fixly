@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 
 function buildStripeClient(): Stripe {
   return new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-    apiVersion: "2024-06-20" as Stripe.LatestApiVersion,
+    apiVersion: "2024-06-20" as unknown as Stripe.LatestApiVersion,
   });
 }
 
@@ -43,16 +43,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   const db = buildDb();
+  const eventType = stripeEvent.type as string;
 
   try {
-    switch (stripeEvent.type) {
+    switch (eventType) {
       case "transfer.created":
       case "transfer.paid": {
         const transfer = stripeEvent.data.object as Stripe.Transfer;
         const jobId = transfer.metadata?.job_id;
         const tradespersonId = transfer.metadata?.tradesperson_id;
         const payoutAmount = transfer.amount / 100;
-        const isPaid = stripeEvent.type === "transfer.paid";
+        const isPaid = eventType === "transfer.paid";
 
         if (jobId && tradespersonId) {
           await db.execute(
