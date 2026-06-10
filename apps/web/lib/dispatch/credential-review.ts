@@ -39,7 +39,7 @@ export interface PendingCredential {
 
 export async function getPendingCredentials(): Promise<PendingCredential[]> {
   const pool = getPool();
-  const res = await pool.query<Record<string, unknown>>(
+  const res = await pool.query(
     `SELECT id, first_name, last_name, email, phone,
             license_number, license_expiry, license_document_url, created_at
      FROM dispatch_tradespeople
