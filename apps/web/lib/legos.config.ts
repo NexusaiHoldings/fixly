@@ -63,6 +63,20 @@ export const LEGOS: readonly LegoConfig[] = [
   },
   {
     "config": {
+      "tier_ladder": [
+        {
+          "name": "Homeowner Membership (Priority Dispatch)",
+          "price_id": "price_1Tgtyw6WMeYkDDIuxzz9hZMd",
+          "amount": 1900,
+          "interval": "month"
+        },
+        {
+          "name": "Pro Tradesperson Subscription",
+          "price_id": "price_1Tgtyw6WMeYkDDIurWUHU8IG",
+          "amount": 4900,
+          "interval": "month"
+        }
+      ],
       "default_currency": "usd",
       "enable_proration": true,
       "trial_days": 0
